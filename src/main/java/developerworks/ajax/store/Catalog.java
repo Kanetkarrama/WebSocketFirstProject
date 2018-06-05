@@ -7,7 +7,7 @@ package developerworks.ajax.store;
 
 /**
  * This is the catalog class which display all the catalog items from which we can select item to add into out cart
- * @author Rama
+ * This is catalog code from mccarthy article.
  */
 import java.util.*;
 
@@ -24,6 +24,7 @@ public class Catalog {
    items.put("str001",new Item("str001","String","Metric tonne of bailing twine", 1999));
    items.put("qua001",new Item("qua001","Quark","Everyone's favorite sub-atomic particle", 49));
    items.put("tab001",new Item("tab001","Table","Sturdy and elegant Coffee table", 10099));
+   //added extra item in the catalog
   }
 
   public Collection<Item> getAllItems() {

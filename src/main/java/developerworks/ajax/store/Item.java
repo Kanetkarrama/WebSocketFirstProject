@@ -7,7 +7,7 @@ package developerworks.ajax.store;
 
 /**
  * This is an item class which stores code, name, description and price for each item
- * @author Rama
+ * This is item code from mccarthy article.
  */
 import java.math.BigDecimal;
 

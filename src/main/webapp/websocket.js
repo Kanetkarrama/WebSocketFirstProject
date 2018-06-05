@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 var wsUri = "ws://" + document.location.host + document.location.pathname + "ShoppingCartendpoint";
+// ShoppingCartendpoint shoudl be same as @ServerEndpoint value
 var websocket = new WebSocket(wsUri);
 
 websocket.onerror = function(evt) { onError(evt) };
-websocket.onmessage = function(evt) { onMessage(evt) }; 
+//calls onError function if an error is encountered
+websocket.onmessage = function(evt) { onMessage(evt) };
+// calls onmessage method on an event and passes the evt value
 
 function onError(evt) {
     writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);

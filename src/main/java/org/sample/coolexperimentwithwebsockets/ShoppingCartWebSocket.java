@@ -20,24 +20,26 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 /**
- *
+ * This is the websocketendpoint file. The whiteboard websocketendpoint is used as a reference 
  * @author Rama
  */
 @ServerEndpoint(value="/ShoppingCartendpoint")
-public class ShoppingCart {
+public class ShoppingCartWebSocket {
      private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
+     // gloabal variable for cart so that the cart content can be passed across the peers
      private static Cart myCart = new Cart();
      
-    @OnMessage //reveive msg
+    @OnMessage //reveive msg vis sendText method from websocket.js
     public void broadcast(String obj, Session session) throws IOException, EncodeException {
-
+        
+        // Object input comes like "action=add&item=<itemcode>". This is set in cart.js and passed through sendText in websocket.js
         String itemCode="";
         String actionType = obj.substring(0,obj.indexOf("&"));
         String item = obj.substring(obj.indexOf("&")+1);
-        
+        // extract action and item code value from the message event input string
         String action = actionType.substring(actionType.indexOf("=")+1);
         itemCode = item.substring(item.indexOf("=")+1);
-        
+        // check if event requested by the user is add or remove
         if(action.equals("add")){
             myCart.addItem(itemCode);
         
@@ -45,7 +47,7 @@ public class ShoppingCart {
             myCart.removeItems(itemCode);
         }
         
-        
+        // update all peers with cart content using the json for cart.
         String cartJson = myCart.toJSON();
         for (Session peer : peers) {
             peer.getBasicRemote().sendObject(cartJson);
@@ -53,6 +55,7 @@ public class ShoppingCart {
     }
      @OnOpen
     public void onOpen (Session peer) throws IOException, EncodeException {
+        // updates cart for a new peer if cart already has some content from already existing peer
         peers.add(peer);
         String cartJson = myCart.toJSON();
         peer.getBasicRemote().sendObject(cartJson);

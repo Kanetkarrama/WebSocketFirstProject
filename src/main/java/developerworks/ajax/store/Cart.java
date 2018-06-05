@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 /**
- * A very simple shopping Cart
+ * A very simple shopping Cart. This is a code from mccarthy article
  */
 public class Cart {
 
@@ -74,7 +74,7 @@ public class Cart {
     public String toJSON() {
         StringBuffer json = new StringBuffer();
         json.append("{");
-// Time tag to capture the latest updates on the page
+// generated tag to capture the latest updates on the page
         json.append("\"generated\":\"" + System.currentTimeMillis() + "\"," + "\"Total\":\"" + getCartTotal() + "\"," + "\"Items\":[");
 
         int sizeContents = contents.size();

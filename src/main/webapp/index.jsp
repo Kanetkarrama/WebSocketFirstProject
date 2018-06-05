@@ -13,9 +13,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     </head>
+    <!-- onload tag calls addToCart method from cart with 0 as parameter. This makes sure that the cart has updated value if browser is refreshed-->
     <body onload="addToCart(0)">
         <h1>Collaborative Shopping Cart App</h1>
-        <div id="output"></div> 
+    <!--    <div id="output"></div> - for testing -->
        <div style="float: left; width: 500px">
 <h2>Catalog</h2>
 <table border="1">
@@ -37,6 +38,7 @@
 Total cost: <span id="total">$0.00</span>
 </div>
 </div>
+  <!-- Have the browser fetch two javascript files. -->
     <script type="text/javascript" src="websocket.js"></script>
     <script type="text/javascript" language="javascript" src="cart.js"></script>
     </body>
